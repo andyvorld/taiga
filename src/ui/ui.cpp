@@ -658,8 +658,8 @@ void OnAnimeWatchingStart(const anime::Item& anime_item,
     taskbar.Tip(L"", L"", 0);
     taskbar.Tip(tip_text.c_str(), L"Now Playing", NIIF_INFO | NIIF_NOSOUND);
   }
+  discord::updateDiscordPresence(false, anime_item.GetEnglishTitle(true), episode.episode_number(), anime_item.GetEpisodeCount());
 
-  discord::updateDiscordPresence(false, anime_item.GetEnglishTitle(true) + L" Episode " + std::to_wstring(episode.episode_number()));
 }
 
 void OnAnimeWatchingEnd(const anime::Item& anime_item,
