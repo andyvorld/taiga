@@ -44,7 +44,14 @@ namespace discord
       sprintf_s(tmpString, sizeof(char) * anime_name_len, "%ls", anime_name.c_str());
       discordPresence.details = tmpString;
       char* state = new char[255];
-      sprintf_s(state, sizeof(char) * 255, "Episode %d of %d", episode_number, episode_count);
+      if (episode_count == 0)
+      {
+        sprintf_s(state, sizeof(char) * 255, "Episode %d", episode_number);
+      }
+      else
+      {
+        sprintf_s(state, sizeof(char) * 255, "Episode %d of %d", episode_number, episode_count);
+      }
       discordPresence.state = state;
       discordPresence.startTimestamp = time(0);
       Discord_UpdatePresence(&discordPresence);
